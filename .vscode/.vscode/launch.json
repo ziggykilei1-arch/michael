@@ -5,10 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "editor-browser",
+            "type": "chrome",
             "request": "launch",
-            "name": "Open INDEX.HTML",
-            "url": "file:///c%3A/Users/ADMIN/ziggy%20-%20Personal/CLASS%20WORK%202/INDEX.HTML"
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
