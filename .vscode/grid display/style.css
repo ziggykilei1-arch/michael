@@ -1,0 +1,34 @@
+.main{
+ display: grid;
+    grid-template-columns: repeat(3 ,1fr);
+}
+.one{
+    padding: 10px;
+    background-color: aqua;
+    margin: 30px;
+}
+.two{
+    padding: 10px;
+    background-color: lightgreen;
+    margin: 30px;
+}
+.three{
+    padding: 10px;
+    background-color: lightcoral;
+    margin: 30px;
+}
+.four{
+    padding: 10px;
+    background-color: lightblue;
+    margin: 30px;
+}
+.five{
+    padding: 10px;
+    background-color: lightpink;
+    margin: 30px;
+}
+.six{
+    padding: 10px;
+    background-color: lightyellow;
+    margin: 30px;
+}

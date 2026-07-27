@@ -1,0 +1,24 @@
+.main{
+    display: grid ;
+    grid-template-columns: repeat(3, 1fr);
+}
+.one{
+padding: 10px;  
+margin: 30px; 
+background-color: black;
+}
+.two{
+    padding: 10px;
+    margin: 30px;
+    background-color: blue;
+}
+.three{
+    padding: 10px;
+    margin: 30px;
+    background-color: thistle;
+}
+.four{
+    padding: 10px;
+    margin: 30px;
+    background-color: brown;
+}
