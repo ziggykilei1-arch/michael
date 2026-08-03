@@ -1,115 +1,176 @@
- const display = document.getElementById("display");
+const display = document.getElementById("display");
 
-    let firstValue = null;
-    let operator = null;
-    let waitingForSecondValue = false;
+let firstValue = null;
+let operator = null;
+let waitingForSecondValue = false;
+let justCalculated = false;
 
-    function updateDisplay(value) {
-      display.value = value;
-    }
+function updateDisplay(value) {
+  display.value = value;
+}
 
-    function clearAll() {
-      firstValue = null;
-      operator = null;
-      waitingForSecondValue = false;
-      updateDisplay("0");
-    }
+function clearAll() {
+  firstValue = null;
+  operator = null;
+  waitingForSecondValue = false;
+  justCalculated = false;
+  updateDisplay("0");
+}
 
-    function appendNumber(number) {
-      const current = display.value;
+function appendNumber(number) {
+  const current = display.value;
 
-      if (waitingForSecondValue) {
-        updateDisplay(number);
-        waitingForSecondValue = false;
-      } else {
-        updateDisplay(current === "0" ? number : current + number);
+  if (waitingForSecondValue || current === "0" || (justCalculated && operator === null)) {
+    updateDisplay(number);
+    waitingForSecondValue = false;
+    justCalculated = false;
+  } else {
+    updateDisplay(current + number);
+  }
+}
+
+function appendDecimal() {
+  if (waitingForSecondValue) {
+    updateDisplay("0.");
+    waitingForSecondValue = false;
+    justCalculated = false;
+    return;
+  }
+
+  if (!display.value.includes(".")) {
+    updateDisplay(display.value + ".");
+  }
+}
+
+function calculate(a, b, op) {
+  switch (op) {
+    case "+":
+      return a + b;
+    case "-":
+      return a - b;
+    case "*":
+      return a * b;
+    case "/":
+      if (b === 0) {
+        alert("Cannot divide by zero");
+        return 0;
       }
-    }
+      return a / b;
+    default:
+      return b;
+  }
+}
 
-    function appendDecimal() {
-      if (waitingForSecondValue) {
-        updateDisplay("0.");
-        waitingForSecondValue = false;
-        return;
-      }
+function handleOperator(nextOperator) {
+  const inputValue = parseFloat(display.value);
 
-      if (!display.value.includes(".")) {
-        updateDisplay(display.value + ".");
-      }
-    }
+  if (operator && waitingForSecondValue) {
+    operator = nextOperator;
+    return;
+  }
 
-    function calculate(a, b, op) {
-      switch (op) {
-        case "+":
-          return a + b;
-        case "-":
-          return a - b;
-        case "*":
-          return a * b;
-        case "/":
-          if (b === 0) {
-            alert("Cannot divide by zero");
-            return 0;
-          }
-          return a / b;
-        default:
-          return b;
-      }
-    }
+  if (firstValue === null) {
+    firstValue = inputValue;
+  } else if (operator) {
+    const result = calculate(firstValue, inputValue, operator);
+    updateDisplay(String(result));
+    firstValue = result;
+  }
 
-    function handleOperator(nextOperator) {
-      const inputValue = parseFloat(display.value);
+  operator = nextOperator;
+  waitingForSecondValue = true;
+  justCalculated = false;
+}
 
-      if (operator && waitingForSecondValue) {
-        operator = nextOperator;
-        return;
-      }
+function calculateResult() {
+  if (operator === null || firstValue === null) return;
 
-      if (firstValue === null) {
-        firstValue = inputValue;
-      } else if (operator) {
-        const result = calculate(firstValue, inputValue, operator);
-        updateDisplay(String(result));
-        firstValue = result;
-      }
+  const inputValue = parseFloat(display.value);
+  const result = calculate(firstValue, inputValue, operator);
 
-      operator = nextOperator;
-      waitingForSecondValue = true;
-    }
+  updateDisplay(String(result));
+  firstValue = result;
+  operator = null;
+  waitingForSecondValue = false;
+  justCalculated = true;
+}
 
-    function calculateResult() {
-      if (operator === null || firstValue === null) return;
+function deleteLast() {
+  let current = display.value;
 
-      const inputValue = parseFloat(display.value);
-      const result = calculate(firstValue, inputValue, operator);
+  if (current.length <= 1) {
+    updateDisplay("0");
+    return;
+  }
 
-      updateDisplay(String(result));
-      firstValue = result;
-      operator = null;
-      waitingForSecondValue = false;
-    }
+  current = current.slice(0, -1);
+  updateDisplay(current);
+}
 
-    function deleteLast() {
-      let current = display.value;
+function applyFunction(fn) {
+  const currentValue = parseFloat(display.value);
+  let result;
 
-      if (current.length <= 1) {
-        updateDisplay("0");
-        return;
-      }
+  switch (fn) {
+    case "sqrt":
+      result = Math.sqrt(currentValue);
+      break;
+    case "pow2":
+      result = currentValue * currentValue;
+      break;
+    case "pow3":
+      result = currentValue * currentValue * currentValue;
+      break;
+    case "sin":
+      result = Math.sin(currentValue);
+      break;
+    case "cos":
+      result = Math.cos(currentValue);
+      break;
+    case "tan":
+      result = Math.tan(currentValue);
+      break;
+    case "log":
+      result = Math.log10(currentValue);
+      break;
+    case "ln":
+      result = Math.log(currentValue);
+      break;
+    case "exp":
+      result = Math.exp(currentValue);
+      break;
+    case "pi":
+      result = Math.PI;
+      break;
+    default:
+      return;
+  }
 
-      current = current.slice(0, -1);
-      updateDisplay(current);
-    }
+  if (!isFinite(result) || Number.isNaN(result)) {
+    alert("Invalid input for this function");
+    result = 0;
+  }
 
-    document.querySelectorAll("[data-number]").forEach((button) => {
-      button.addEventListener("click", () => appendNumber(button.dataset.number));
-    });
+  updateDisplay(String(result));
+  waitingForSecondValue = true;
+  justCalculated = true;
+  operator = null;
+  firstValue = null;
+}
 
-    document.querySelectorAll("[data-operator]").forEach((button) => {
-      button.addEventListener("click", () => handleOperator(button.dataset.operator));
-    });
+document.querySelectorAll("[data-number]").forEach((button) => {
+  button.addEventListener("click", () => appendNumber(button.dataset.number));
+});
 
-    document.getElementById("decimal").addEventListener("click", appendDecimal);
-    document.getElementById("equals").addEventListener("click", calculateResult);
-    document.getElementById("clear").addEventListener("click", clearAll);
-    document.getElementById("delete").addEventListener("click", deleteLast);
+document.querySelectorAll("[data-operator]").forEach((button) => {
+  button.addEventListener("click", () => handleOperator(button.dataset.operator));
+});
+
+document.querySelectorAll("[data-function]").forEach((button) => {
+  button.addEventListener("click", () => applyFunction(button.dataset.function));
+});
+
+document.getElementById("decimal").addEventListener("click", appendDecimal);
+document.getElementById("equals").addEventListener("click", calculateResult);
+document.getElementById("clear").addEventListener("click", clearAll);
+document.getElementById("delete").addEventListener("click", deleteLast);
