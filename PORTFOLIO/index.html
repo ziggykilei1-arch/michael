@@ -1,188 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ziggy Kilei — Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
-     <img src="pic.jpg" alt="profile" class="profile" style="display: flex; left: 0;">
-    <h1>My Portfolio</h1>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#skills">Skills</a></li>
-        </ul>
-    </nav>
+    <div class="header-inner">
+        <div class="brand">
+            <img src="pic.jpg" alt="profile" class="profile">
+            <div>
+                <h1>Ziggy Kilei</h1>
+                <p class="subtitle">Electrical Technician & Web Developer</p>
+            </div>
+        </div>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
-<section id="home">
-    <h2>Welcome to My Portfolio</h2>
-    <p>Hello, I'm a web developer passionate about creating beautiful and functional websites.</p>
-    <p>I am an electrical technician with a strong foundation in circuit design and troubleshooting.</p>
-<button onclick="welcome">Get in Touch</button>
-</section>
+
+<main>
+    <section id="home" class="hero">
+        <div class="hero-copy">
+            <h2>Welcome</h2>
+            <p>Hello — I'm Ziggy. I combine electrical engineering experience with front-end web development to deliver practical, responsive solutions.</p>
+            <button id="contact-btn" type="button">Get in Touch</button>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-grid">
+            <div>
+                <h2>About Me</h2>
+                <p>I am an electrical technician with a passion for automation, system design, and web development. I enjoy creating tools and websites that improve efficiency and user experience.</p>
+                <button id="about-show-btn" type="button">Show more</button>
+                <div id="about-message" class="about-message" aria-live="polite"></div>
+            </div>
+            <div class="about-details">
+                <h3>Education</h3>
+                <ul>
+                    <li>Bachelor of Science in Electrical Engineering</li>
+                    <li>Diploma in Electrical Engineering</li>
+                    <li>Courses: HTML, CSS, JavaScript</li>
+                </ul>
+                <h3>Highlights</h3>
+                <ul>
+                    <li>Automation systems design</li>
+                    <li>Responsive website development</li>
+                    <li>Electrical troubleshooting</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div id="projects-list" class="projects-grid"></div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div id="skills-list" class="skills-grid"></div>
+    </section>
+
+    <section id="contact">
+        <div class="section-grid">
+            <div>
+                <h2>Contact</h2>
+                <p>Send me a message and I will reply as soon as possible.</p>
+            </div>
+            <form id="contactForm" novalidate>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required><br>
+
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required><br>
+
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="+254 740542243"><br>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea><br>
+
+                <button type="submit">Send Message</button>
+                <p id="form-feedback" class="form-feedback" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; <span id="year"></span> Ziggy Kilei</p>
+    <p>Contact: <a href="mailto:ziggykilei1@gmail.com">ziggykilei1@gmail.com</a> | +254 740542243</p>
+</footer>
+
 <script src="script.js"></script>
 </body>
 </html>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>about</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header>
-            <h1>About Me</h1>
-            <nav>
-                <a href="#Introduction">Introduction</a>
-                <a href="#Biography">Biography</a>
-                <a href="#Achievements">Achievements</a>
-                <a href="#Objectives">Objectives</a>
-                <a href="#Education">Education</a>
-            </nav>
-        </header>
-        <section>
-            <h2>Introduction</h2>
-            <p>Hello, my name is Ziggy Kilei. I am an electrical technician with a passion for technology and web development. I have a strong foundation in electrical engineering and enjoy exploring new programming skills.</p>
-            <h2>Biography</h2>
-            <p>I am passionate about electrical engineering, automation, web development, and technology. I enjoy solving technical problems and learning new programing skills.Am also flexible in learning new skills and opening aroom for correcting my mistakes and being corrected when am not doing the right thing</p>
-            <h2>Achievements</h2>
-            <p>Received the Outstanding Student Award in 2022 for academic excellence.</p>
-            <h2>Objectives</h2>
-            <p>My objective is to continuously improve my skills in electrical engineering and web development,
-            <h2>Education</h2>
-            <p>Bachelor of Science in Electrical Engineering</p>
-            <ul>
-                <li>Diploma in Electrical Engineering</li>
-                <li>Graduated: 2024</li>
-                <li>Html & CSS</li>
-                <li>JavaScript Basics</li>
-            </ul>
-        </section>
-    </body>
-</html>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Skills</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header>
-            <h1>My Skills</h1>
-            <nav>
-                <a href="#Technical">Technical</a>
-                <a href="#Programming">Programming</a>
-                <a href="#Professional">Professional</a>
-                <a href="#Computer">Computer</a>
-                <a href="#soft">soft</a>
-            </nav>
-        </header>
-        <section>
-            <h2>Technical Skills</h2>
-            <ul>
-                <li>Electrical Circuit Design</li>
-                <li>Troubleshooting and Maintenance</li>
-                <li>Automation Systems</li>
-                <li>Programmable Logic Controller Basics</li>
-                <li>Git & Github</li>
-            </ul>
-            <h2>Programming Skills</h2>
-            <ul>
-                <li>HTML & CSS</li>
-                <li>JavaScript Basics</li>
-            </ul>
-            <h2>Professional Skills</h2>
-            <ul>
-                <li>Project Management</li>
-                <li>Client Communication</li>
-            </ul>
-            <h2>Computer Skills</h2>
-            <ul>
-                <li>Microsoft Office Suite</li>
-                <li>Basic Networking</li>
-            </ul>
-            <h2>Soft Skills</h2>
-            <ul>
-                <li>Communication</li>
-                <li>Teamwork</li>
-                <li>Problem Solving</li>
-                <li>Adaptability</li>
-                <li>Team Work</li>
-            </ul>
-        </section>
-    </body>
-</html>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Contact</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header>
-            <h1>Contact Me</h1>
-            <nav>
-                <a href="#Name">Name</a>
-                <a href="#Email">Email</a>
-                <a href="#Phone">Phone</a>
-                <a href="#Address">Address</a>
-                <a href="#Message">Message</a>
-            </nav>
-        </header>
-        <section>
-            <h2>Get in Touch</h2>
-                <label for="name">Name:</label><br>
-                <input type="text" id="name" placeholder="Ziggy Kilei"><br><br>
-
-                <label for="email">Email:</label><br>
-                <input type="text" placeholder="ziggykilei1@gmail.com"><br><br>
-
-                <label for="phone">Phone:</label><br>
-                <input type="text" placeholder="+254 740542243"><br><br>
-
-                <label for="address">Address:</label><br>
-                <input type="text" placeholder="123 Main Street, City, Country"><br><br>
-
-                <label for="message">Message:</label><br>
-                <textarea rows="6"></textarea><br><br>
-
-                <input type="submit" value="Send Message">
-            </form>
-        </section>
-    </body>
-    <!DOCTYPE html>
-<html>
-    <head>
-        <title>Projects</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header>
-            <h1>My Projects</h1>
-            <nav>
-                <a href="#Personal">Personal</a>
-                <a href="#Professional">Professional</a>
-                <a href="#Featured">Featured</a>
-                <a href="#Academic">Academic</a>
-                <a href="#Overview">Overview</a>
-            </nav>
-        </header>
-            <section>
-                <h2>Project 1:</h2> 
-                    <p>Personal Portfolio Website - A responsive website showcasing my skills and projects.</p>
-                <h2>Project 2:</h2>
-                    <p>My First CSS Project - A simple website built using HTML and CSS.</p>
-                <h2>Project 3:</h2>
-                    <p>Restaurant Website - A project showcasing a responsive website for a local restaurant.</p>
-            </section>
-    </body>
-    <footer>
-        <p>&copy; 2026 My Portfolio.</p>
-        <p>Contact me at ziggykilei1@gmail.com or phone: +254 740542243</p>
-    </footer>
